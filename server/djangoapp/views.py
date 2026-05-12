@@ -12,6 +12,7 @@ from django.http import JsonResponse
 from django.contrib.auth import login, authenticate, logout
 import logging
 import json
+from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
 # from .populate import initiate
 
@@ -49,7 +50,37 @@ def logout_request(request):
 # @csrf_exempt
 # def registration(request):
 # ...
+@csrf_exempt
+def registration(request):
 
+    data = json.loads(request.body)
+
+    username = data['userName']
+    password = data['password']
+    first_name = data['firstName']
+    last_name = data['lastName']
+    email = data['email']
+
+    try:
+        user = User.objects.get(username=username)
+        return JsonResponse({"userName": username, "error": "Already Registered"})
+    except:
+        pass
+
+    user = User.objects.create_user(
+        username=username,
+        password=password,
+        email=email,
+        first_name=first_name,
+        last_name=last_name
+    )
+
+    login(request, user)
+
+    return JsonResponse({
+        "userName": username,
+        "status": "Authenticated"
+    })
 # # Update the `get_dealerships` view to render the index page with
 # a list of dealerships
 # def get_dealerships(request):
