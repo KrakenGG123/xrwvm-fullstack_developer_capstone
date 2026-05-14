@@ -35,10 +35,11 @@ class Migration(migrations.Migration):
                     verbose_name='ID')),
                 ('name', models.CharField(max_length=100)),
                 ('type', models.CharField(
-                    choices=[('SEDAN', 'Sedan'),
-                    ('SUV', 'Suv'),
-                    ('WAGON', 'Wagon'),
-                    ('HACHBACK', 'Hachback')], default='SUV',
+                    choices=[
+                        ('SEDAN', 'Sedan'),
+                        ('SUV', 'Suv'),
+                        ('WAGON', 'Wagon'),
+                        ('HACHBACK', 'Hachback')], default='SUV',
                     max_length=10)),
                 ('year', models.IntegerField(
                     default=2026,
