@@ -17,9 +17,9 @@ class Migration(migrations.Migration):
             name='CarMake',
             fields=[
                 ('id', models.BigAutoField(
-                    auto_created=True, 
-                    primary_key=True, 
-                    serialize=False, 
+                    auto_created=True,
+                    primary_key=True,
+                    serialize=False,
                     verbose_name='ID')),
                 ('name', models.CharField(max_length=100)),
                 ('description', models.TextField()),
@@ -29,24 +29,24 @@ class Migration(migrations.Migration):
             name='CarModel',
             fields=[
                 ('id', models.BigAutoField(
-                    auto_created=True, 
-                    primary_key=True, 
-                    serialize=False, 
+                    auto_created=True,
+                    primary_key=True,
+                    serialize=False,
                     verbose_name='ID')),
                 ('name', models.CharField(max_length=100)),
                 ('type', models.CharField(
-                    choices=[('SEDAN', 'Sedan'), 
-                    ('SUV', 'Suv'), 
-                    ('WAGON', 'Wagon'), 
-                    ('HACHBACK', 'Hachback')], default='SUV', 
+                    choices=[('SEDAN', 'Sedan'),
+                    ('SUV', 'Suv'),
+                    ('WAGON', 'Wagon'),
+                    ('HACHBACK', 'Hachback')], default='SUV',
                     max_length=10)),
                 ('year', models.IntegerField(
-                    default=2026, 
-                    validators=[django.core.validators.MaxValueValidator(2026), 
+                    default=2026,
+                    validators=[django.core.validators.MaxValueValidator(2026),
                     django.core.validators.MinValueValidator(2015)]
                     )),
                 ('car_make', models.ForeignKey(
-                    on_delete=django.db.models.deletion.CASCADE, 
+                    on_delete=django.db.models.deletion.CASCADE,
                     to='djangoapp.carmake')),
             ],
         ),
